@@ -1,0 +1,470 @@
+/* ==========================================================================
+   AYMAN SOLIMAN — SCRICTTI — Dark Letterario Theme
+   Atmosfera: libro raro, pergamena scura, oro, serif elegante.
+   ========================================================================== */
+
+/* --- Google Fonts: Cormorant Garamond (display) caricato via @import --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+  --md-default-fg-color: #e8dcc4;            /* testo crema */
+  --md-default-fg-color--light: #b8a888;     /* testo secondario */
+  --md-default-fg-color--lighter: #6b5d44;   /* muted */
+  --md-default-bg-color: #0d0a08;            /* nero profondo caldo */
+  --md-default-bg-color--light: #1a1410;     /* card */
+  --md-default-bg-color--lighter: #2a2018;   /* hover */
+
+  --md-primary-fg-color: #0d0a08;
+  --md-primary-fg-color--light: #e8dcc4;
+  --md-primary-bg-color: #1a1410;
+  --md-primary-bg-color--light: #2a2018;
+
+  --md-accent-fg-color: #d4af37;             /* ORO */
+  --md-accent-fg-color--transparent: rgba(212, 175, 55, 0.15);
+  --md-accent-bg-color: #0d0a08;
+  --md-accent-bg-color--light: #1a1410;
+
+  --md-code-fg-color: #e8dcc4;
+  --md-code-bg-color: #1a1410;
+
+  --md-typeset-a-color: #d4af37;
+  --md-text-font: "EB Garamond", Georgia, serif;
+  --md-code-font: "JetBrains Mono", monospace;
+}
+
+/* Palette SLATE (dark mode attiva) */
+[data-md-color-scheme="slate"] {
+  --md-default-fg-color: #e8dcc4;
+  --md-default-fg-color--light: #b8a888;
+  --md-default-fg-color--lighter: #6b5d44;
+  --md-default-bg-color: #0d0a08;
+  --md-default-bg-color--light: #1a1410;
+  --md-default-bg-color--lighter: #2a2018;
+  --md-primary-fg-color: #0d0a08;
+  --md-primary-bg-color: #1a1410;
+  --md-accent-fg-color: #d4af37;
+  --md-typeset-a-color: #d4af37;
+}
+
+/* === TEXTURE DI SFONDO: carta scura + grain + vignettatura === */
+body,
+.md-container,
+.md-main {
+  background-color: #0d0a08;
+  background-image:
+    /* vignettatura laterale */
+    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%),
+    /* texture carta sottile (noise simulato con gradient) */
+    repeating-linear-gradient(
+      45deg,
+      rgba(40, 30, 20, 0.03) 0px,
+      rgba(40, 30, 20, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(60, 45, 25, 0.02) 0px,
+      rgba(60, 45, 25, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    /* macchie calde */
+    radial-gradient(circle at 20% 30%, rgba(80, 50, 20, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(60, 35, 15, 0.06) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* === HEADER (topbar) === */
+.md-header {
+  background: linear-gradient(180deg, rgba(13,10,8,0.98) 0%, rgba(26,20,16,0.95) 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+}
+
+.md-header__title {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #e8dcc4;
+}
+
+/* === TABS navigazione === */
+.md-tabs {
+  background: linear-gradient(180deg, rgba(26,20,16,0.9) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.md-tabs__link {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #b8a888 !important;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.md-tabs__link:hover,
+.md-tabs__link--active {
+  color: #d4af37 !important;
+}
+
+/* === SIDEBAR === */
+.md-sidebar {
+  background: rgba(13, 10, 8, 0.4);
+  border-right: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.md-sidebar__title {
+  font-family: "Cormorant Garamond", serif !important;
+  color: #d4af37;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.md-nav__item {
+  border-left: 1px solid transparent;
+  transition: border-left 0.2s ease, padding-left 0.2s ease;
+}
+
+.md-nav__link {
+  font-family: "EB Garamond", Georgia, serif !important;
+  font-size: 1.05rem;
+  color: #b8a888 !important;
+  padding: 0.4em 0.8em;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.md-nav__link:hover,
+.md-nav__link--active {
+  color: #d4af37 !important;
+  border-left: 2px solid #d4af37;
+  padding-left: 1em;
+  background: rgba(212, 175, 55, 0.05);
+}
+
+/* === CONTENT PRINCIPALE === */
+.md-content {
+  background: transparent;
+}
+
+.md-content__inner {
+  background: rgba(26, 20, 16, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 4px;
+  padding: 3em 4em !important;
+  margin: 2em auto;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    inset 0 0 60px rgba(80, 50, 20, 0.05);
+  backdrop-filter: blur(2px);
+  max-width: 760px;
+}
+
+/* edge giallo-oro sottile a destra e sinistra */
+.md-content__inner::before,
+.md-content__inner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(212,175,55,0.3), transparent);
+}
+.md-content__inner { position: relative; }
+.md-content__inner::before { left: 0; }
+.md-content__inner::after { right: 0; }
+
+/* === TIPOGRAFIA NARRATIVA === */
+.md-content h1 {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500;
+  font-size: 2.6rem !important;
+  color: #f0e4cc;
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+/* ornamento sotto il titolo h1 */
+.md-content h1::after {
+  content: "❦";
+  display: block;
+  text-align: center;
+  margin-top: 0.4em;
+  color: #d4af37;
+  font-size: 1.2rem;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+.md-content h2 {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500;
+  font-size: 1.8rem !important;
+  color: #d4af37;
+  margin-top: 2em;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  padding-bottom: 0.3em;
+}
+
+.md-content h3 {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500;
+  font-size: 1.4rem !important;
+  color: #e8dcc4;
+  letter-spacing: 0.02em;
+}
+
+.md-content p,
+.md-content li {
+  font-family: "EB Garamond", Georgia, serif !important;
+  font-size: 1.18rem !important;
+  line-height: 1.85 !important;
+  color: #e8dcc4;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.md-content p {
+  margin: 0 0 1.2em 0;
+}
+
+/* === DROP-CAP: prima lettera del primo paragrafo dopo l'h1 === */
+.md-content__inner > h1 + p::first-letter,
+.md-content__inner > h1 + .copertina + p::first-letter,
+.prose-start::first-letter {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: 4.2em;
+  float: left;
+  line-height: 0.85;
+  padding-right: 0.12em;
+  padding-top: 0.05em;
+  color: #d4af37;
+  font-weight: 500;
+  text-shadow: 0 3px 12px rgba(212, 175, 55, 0.4);
+}
+
+/* === CITAZIONI: box dediche/incipit === */
+.md-content blockquote {
+  font-style: italic;
+  font-family: "EB Garamond", Georgia, serif !important;
+  font-size: 1.25rem;
+  color: #c8b890;
+  border-left: 3px solid #d4af37;
+  background: rgba(212, 175, 55, 0.04);
+  padding: 1.2em 1.8em;
+  margin: 1.5em 0;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+}
+
+.md-content blockquote::before {
+  content: "“";
+  position: absolute;
+  top: -0.1em;
+  left: 0.15em;
+  font-size: 3rem;
+  color: rgba(212, 175, 55, 0.3);
+  font-family: "Cormorant Garamond", serif;
+}
+
+.md-content blockquote p {
+  text-align: left;
+  font-style: italic;
+}
+
+/* === LINK === */
+.md-content a {
+  color: #d4af37 !important;
+  border-bottom: 1px dotted rgba(212, 175, 55, 0.5);
+  transition: all 0.2s ease;
+}
+
+.md-content a:hover {
+  color: #f0c050 !important;
+  border-bottom: 1px solid #d4af37;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+/* === DIVISORI ORNAMENTALI === */
+.md-content hr {
+  border: none;
+  height: 30px;
+  background: transparent;
+  text-align: center;
+  margin: 2.5em 0;
+  position: relative;
+}
+
+.md-content hr::before {
+  content: "❦  ✦  ❦";
+  color: #d4af37;
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  opacity: 0.7;
+}
+
+/* === COPERTINE SVG === */
+.copertina {
+  display: block;
+  margin: 1.5em auto 2.5em;
+  max-width: 100%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 2px;
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(212, 175, 55, 0.1);
+  filter: sepia(0.2) contrast(1.05);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.copertina:hover {
+  transform: scale(1.01);
+  filter: sepia(0.1) contrast(1.1) brightness(1.05);
+}
+
+/* === CODE BLOCKS === */
+.md-content code {
+  background: rgba(212, 175, 55, 0.08);
+  color: #f0c050;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+  font-size: 0.9em;
+}
+
+.md-content pre {
+  background: #1a1410 !important;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 4px;
+}
+
+.md-content pre code {
+  background: transparent !important;
+  border: none;
+}
+
+/* === TABELLE === */
+.md-content table {
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(26, 20, 16, 0.4);
+}
+
+.md-content table th {
+  background: rgba(212, 175, 55, 0.1);
+  color: #d4af37;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  font-family: "Cormorant Garamond", serif;
+}
+
+.md-content table td {
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* === FOOTER === */
+.md-footer {
+  background: linear-gradient(180deg, rgba(13,10,8,0.95) 0%, #050403 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  color: #b8a888;
+}
+
+.md-footer-meta {
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* === ANIMAZIONI SOTTILI === */
+
+/* fade-in all'apertura della pagina */
+.md-content__inner {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* hover sui link della sidebar */
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 4px rgba(212, 175, 55, 0.3); }
+  50% { text-shadow: 0 0 12px rgba(212, 175, 55, 0.6); }
+}
+
+.md-nav__link--active {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* === SEARCH === */
+.md-search__input {
+  background: rgba(26, 20, 16, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: #e8dcc4;
+  font-family: "EB Garamond", serif;
+}
+
+.md-search__input::placeholder {
+  color: #6b5d44;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0a08;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+}
+
+/* === SELECTION === */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #f0e4cc;
+}
+
+/* === BOX NOTE/AVVISI === */
+.md-typeset .admonition,
+.md-typeset details {
+  background: rgba(26, 20, 16, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  font-family: "Cormorant Garamond", serif;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+/* === MOBILE: padding ridotto === */
+@media screen and (max-width: 76.1875em) {
+  .md-content__inner {
+    padding: 1.5em !important;
+    margin: 1em 0.5em;
+  }
+  .md-content h1 {
+    font-size: 2rem !important;
+  }
+  .md-content p,
+  .md-content li {
+    font-size: 1.05rem !important;
+  }
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <!-- texture carta -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="13"/>
+      <feColorMatrix values="0 0 0 0 0.2  0 0 0 0 0.15  0 0 0 0 0.08  0 0 0 0.12 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <!-- glow oro -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- gradiente orizzontale -->
+    <linearGradient id="bg-13" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d0a08"/>
+      <stop offset="50%" stop-color="#1a1410"/>
+      <stop offset="100%" stop-color="#0d0a08"/>
+    </linearGradient>
+    <!-- radial spotlight -->
+    <radialGradient id="spot-13" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0d0a08" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sfondo -->
+  <rect width="800" height="450" fill="url(#bg-13)"/>
+  <rect width="800" height="450" fill="url(#spot-13)"/>
+  <rect width="800" height="450" filter="url(#grain)" opacity="0.6"/>
+
+  <!-- cornice doppia oro -->
+  <rect x="20" y="20" width="760" height="410" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.7"/>
+  <rect x="28" y="28" width="744" height="394" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- angoli decorati -->
+  <g stroke="#d4af37" stroke-width="1" fill="none" opacity="0.8">
+    <!-- top-left -->
+    <path d="M 30 60 L 30 30 L 60 30"/>
+    <circle cx="30" cy="30" r="3" fill="#d4af37"/>
+    <!-- top-right -->
+    <path d="M 740 30 L 770 30 L 770 60"/>
+    <circle cx="770" cy="30" r="3" fill="#d4af37"/>
+    <!-- bottom-left -->
+    <path d="M 30 390 L 30 420 L 60 420"/>
+    <circle cx="30" cy="420" r="3" fill="#d4af37"/>
+    <!-- bottom-right -->
+    <path d="M 740 420 L 770 420 L 770 390"/>
+    <circle cx="770" cy="420" r="3" fill="#d4af37"/>
+  </g>
+
+  <!-- ornamento centrale sopra il titolo -->
+  <g transform="translate(400, 130)" fill="#d4af37" filter="url(#glow)">
+    <ellipse cx="0" cy="0" rx="14" ry="6" stroke="#d4af37" fill="none"/><circle cx="0" cy="0" r="3"/>
+  </g>
+
+  <!-- titolo -->
+  <text x="400" y="245" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="42" font-weight="500"
+        fill="#e8dcc4" letter-spacing="2"
+        filter="url(#glow)">Sabina</text>
+
+  <!-- eventuale sottotitolo -->
+  <text x="400" y="285" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="22" font-style="italic"
+        fill="#d4af37" opacity="0.9">Dieci Racconti</text>
+
+  <!-- ornamento centrale sotto -->
+  <g transform="translate(400, 330)" fill="#d4af37" opacity="0.8">
+    <line x1="-50" y1="-3" x2="50" y2="-3" stroke="#d4af37" stroke-width="0.5"/><line x1="-50" y1="3" x2="50" y2="3" stroke="#d4af37" stroke-width="0.5"/>
+  </g>
+
+  <!-- footer -->
+  <text x="400" y="400" text-anchor="middle"
+        font-family="'EB Garamond', serif"
+        font-size="13" letter-spacing="6"
+        fill="#d4af37" opacity="0.7">RACCONTI · V</text>
+</svg>

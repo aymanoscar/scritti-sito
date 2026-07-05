@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
+  <defs>
+    <linearGradient id="bg-home" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d0a08"/>
+      <stop offset="50%" stop-color="#1a1410"/>
+      <stop offset="100%" stop-color="#0d0a08"/>
+    </linearGradient>
+    <radialGradient id="spot-home" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0d0a08" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow-home" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="grain-home">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="42"/>
+      <feColorMatrix values="0 0 0 0 0.2  0 0 0 0 0.15  0 0 0 0 0.08  0 0 0 0.12 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="500" fill="url(#bg-home)"/>
+  <rect width="1200" height="500" fill="url(#spot-home)"/>
+  <rect width="1200" height="500" filter="url(#grain-home)" opacity="0.5"/>
+
+  <!-- cornice -->
+  <rect x="30" y="30" width="1140" height="440" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.6"/>
+  <rect x="38" y="38" width="1124" height="424" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.35"/>
+
+  <!-- angoli -->
+  <g stroke="#d4af37" stroke-width="1" fill="none" opacity="0.8">
+    <path d="M 40 80 L 40 40 L 80 40"/>
+    <circle cx="40" cy="40" r="3" fill="#d4af37"/>
+    <path d="M 1120 40 L 1160 40 L 1160 80"/>
+    <circle cx="1160" cy="40" r="3" fill="#d4af37"/>
+    <path d="M 40 420 L 40 460 L 80 460"/>
+    <circle cx="40" cy="460" r="3" fill="#d4af37"/>
+    <path d="M 1120 460 L 1160 460 L 1160 420"/>
+    <circle cx="1160" cy="460" r="3" fill="#d4af37"/>
+  </g>
+
+  <!-- ornamento centrale superiore -->
+  <g transform="translate(600, 130)" fill="#d4af37" filter="url(#glow-home)">
+    <text x="0" y="0" font-size="32" text-anchor="middle" font-family="Georgia, serif">❦  ✦  ❦</text>
+  </g>
+
+  <!-- titolo principale -->
+  <text x="600" y="220" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="72" font-weight="500"
+        fill="#f0e4cc" letter-spacing="6"
+        filter="url(#glow-home)">AYMAN SOLIMAN</text>
+
+  <!-- sottotitolo -->
+  <text x="600" y="280" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="32" font-style="italic"
+        fill="#d4af37" opacity="0.95">Scritti</text>
+
+  <!-- linea decorativa -->
+  <g transform="translate(600, 330)">
+    <line x1="-180" y1="0" x2="-30" y2="0" stroke="#d4af37" stroke-width="0.8" opacity="0.7"/>
+    <line x1="30" y1="0" x2="180" y2="0" stroke="#d4af37" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="0" cy="0" r="3" fill="#d4af37" opacity="0.8"/>
+    <circle cx="-20" cy="0" r="1.5" fill="#d4af37" opacity="0.5"/>
+    <circle cx="20" cy="0" r="1.5" fill="#d4af37" opacity="0.5"/>
+  </g>
+
+  <!-- motto -->
+  <text x="600" y="375" text-anchor="middle"
+        font-family="'EB Garamond', Georgia, serif"
+        font-size="18" font-style="italic"
+        fill="#b8a888" opacity="0.85">La scrittura è l'architettura della memoria</text>
+
+  <!-- footer -->
+  <text x="600" y="430" text-anchor="middle"
+        font-family="'EB Garamond', serif"
+        font-size="13" letter-spacing="8"
+        fill="#d4af37" opacity="0.6">LIBRO  ·  RACCONTI  ·  RICERCHE</text>
+</svg>
