@@ -9,7 +9,7 @@ const libro = (await getCollection('opera'))
 ---
 
 <BaseLayout title="Libro — Tecnofascismo · Ayman Soliman" description="Un'indagine narrativa sul tecnofascismo contemporaneo">
-  <section class="collection-hero">
+  <section class="collection-hero section-warm">
     <div class="container-editorial">
       <span class="eyebrow">Progetto lungo</span>
       <h1>Libro — Tecnofascismo</h1>
@@ -20,7 +20,8 @@ const libro = (await getCollection('opera'))
     </div>
   </section>
 
-  <section class="opere-list container-editorial">
+  <section class="opere-list section-cool">
+    <div class="container-editorial">
     {libro.map(opera => (
       <a href={`${B}/opera/${opera.id}`} class="opera-row">
         <div class="row-num">{String(opera.data.order).padStart(2, '0')}</div>
@@ -34,6 +35,7 @@ const libro = (await getCollection('opera'))
         <div class="row-arrow">→</div>
       </a>
     ))}
+    </div>
   </section>
 </BaseLayout>
 

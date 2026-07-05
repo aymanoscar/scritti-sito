@@ -3,14 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="About · Ayman Soliman" description="Sul progetto">
-  <section class="about-hero">
+  <section class="about-hero section-warm">
     <div class="container-editorial">
       <span class="eyebrow">Sul progetto</span>
       <h1>About</h1>
     </div>
   </section>
 
-  <article class="about-body container-editorial">
+  <article class="about-body section-cool">
+    <div class="container-editorial">
     <div class="prose">
       <p>Una <em>biblioteca digitale pubblica</em> del lavoro narrativo e saggistico di Ayman Soliman in collaborazione con i suoi agenti AI (PI, AOrchestra). Pubblichiamo solo materiale intellettuale: racconti, capitoli del libro, ricerche. Niente di personale o privato.</p>
 
@@ -38,6 +39,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <p style="text-align:center; font-style:italic; color:var(--color-paper-muted);">© 2026 Ayman Soliman — Tutti i diritti riservati</p>
     </div>
+  </div>
   </article>
 </BaseLayout>
 

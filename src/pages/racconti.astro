@@ -9,7 +9,7 @@ const racconti = (await getCollection('opera'))
 ---
 
 <BaseLayout title="Racconti · Ayman Soliman" description="Raccolte di racconti di AOrchestra">
-  <section class="collection-hero">
+  <section class="collection-hero section-warm">
     <div class="container-editorial">
       <span class="eyebrow">Raccolte</span>
       <h1>Racconti</h1>
@@ -20,7 +20,8 @@ const racconti = (await getCollection('opera'))
     </div>
   </section>
 
-  <section class="grid-racconti-full container-editorial">
+  <section class="grid-racconti-full-wrap section-cool">
+    <div class="grid-racconti-full container-editorial">
     {racconti.map(opera => (
       <a href={`${B}/opera/${opera.id}`} class="card">
         <div class="card-img-wrap">
@@ -34,6 +35,7 @@ const racconti = (await getCollection('opera'))
         </div>
       </a>
     ))}
+    </div>
   </section>
 </BaseLayout>
 

@@ -42,60 +42,66 @@ const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) 
   </section>
 
   <!-- INTRO -->
-  <section class="intro container-editorial">
-    <p class="intro-text">
-      <em>La scrittura è l'architettura della memoria, non la sua fotografia.</em>
-      Questo spazio raccoglie il lavoro narrativo e saggistico di Ayman Soliman in collaborazione con i suoi agenti intelligenti. Un esperimento di letteratura ibrida dove la visione umano detta la voce e l'intelligenza artificiale tesse ricerche e varianti.
-    </p>
+  <section class="intro section-warm">
+    <div class="container-editorial">
+      <p class="intro-text">
+        <em>La scrittura è l'architettura della memoria, non la sua fotografia.</em>
+        Questo spazio raccoglie il lavoro narrativo e saggistico di Ayman Soliman in collaborazione con i suoi agenti intelligenti. Un esperimento di letteratura ibrida dove la visione umano detta la voce e l'intelligenza artificiale tesse ricerche e varianti.
+      </p>
+    </div>
   </section>
 
   <!-- LIBRO FEATURE -->
-  <section class="section-feature container-editorial" id="libro">
-    <div class="section-head">
-      <span class="section-label">Progetto lungo</span>
-      <h2>Libro — Tecnofascismo</h2>
-      <p class="section-desc">Un'indagine narrativa sul tecnofascismo contemporaneo, scritta in dialogo tra Ayman e PI.</p>
-    </div>
-    <div class="grid-feature">
-      {libro.slice(0, 4).map((opera, i) => (
-        <a href={`${B}/opera/${opera.id}`} class:list={["card", "card-feature", { "card-wide": i === 0 }]}>
-          <div class="card-img-wrap">
-            <img src={`${B}${opera.data.cover}`} alt={opera.data.title} class="card-img" loading="lazy" />
-            <div class="card-img-overlay"></div>
-          </div>
-          <div class="card-body">
-            <span class="card-num">{String(opera.data.order).padStart(2, '0')}</span>
-            <h3 class="card-title">{opera.data.title}</h3>
-            <p class="card-subtitle">{opera.data.subtitle}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-    <div class="section-more">
-      <a href={`${B}/libro`}>Tutti i capitoli e ricerche →</a>
+  <section class="section-feature section-cool" id="libro">
+    <div class="container-editorial">
+      <div class="section-head">
+        <span class="section-label">Progetto lungo</span>
+        <h2>Libro — Tecnofascismo</h2>
+        <p class="section-desc">Un'indagine narrativa sul tecnofascismo contemporaneo, scritta in dialogo tra Ayman e PI.</p>
+      </div>
+      <div class="grid-feature">
+        {libro.slice(0, 4).map((opera, i) => (
+          <a href={`${B}/opera/${opera.id}`} class:list={["card", "card-feature", { "card-wide": i === 0 }]}>
+            <div class="card-img-wrap">
+              <img src={`${B}${opera.data.cover}`} alt={opera.data.title} class="card-img" loading="lazy" />
+              <div class="card-img-overlay"></div>
+            </div>
+            <div class="card-body">
+              <span class="card-num">{String(opera.data.order).padStart(2, '0')}</span>
+              <h3 class="card-title">{opera.data.title}</h3>
+              <p class="card-subtitle">{opera.data.subtitle}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-more">
+        <a href={`${B}/libro`}>Tutti i capitoli e ricerche →</a>
+      </div>
     </div>
   </section>
 
   <!-- RACCONTI FEATURE -->
-  <section class="section-feature container-editorial" id="racconti">
-    <div class="section-head">
-      <span class="section-label">Raccolte</span>
-      <h2>Racconti</h2>
-      <p class="section-desc">Cinque raccolte di racconti scritti da AOrchestra in collaborazione con Ayman. Stili che spaziano dal cronachistico all'avanguardia.</p>
-    </div>
-    <div class="grid-racconti">
-      {racconti.map(opera => (
-        <a href={`${B}/opera/${opera.id}`} class="card card-racconto">
-          <div class="card-img-wrap">
-            <img src={`${B}${opera.data.cover}`} alt={opera.data.title} class="card-img" loading="lazy" />
-            <div class="card-img-overlay"></div>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">{opera.data.title}</h3>
-            <p class="card-subtitle">{opera.data.subtitle}</p>
-          </div>
-        </a>
-      ))}
+  <section class="section-feature section-warm" id="racconti">
+    <div class="container-editorial">
+      <div class="section-head">
+        <span class="section-label">Raccolte</span>
+        <h2>Racconti</h2>
+        <p class="section-desc">Cinque raccolte di racconti scritti da AOrchestra in collaborazione con Ayman. Stili che spaziano dal cronachistico all'avanguardia.</p>
+      </div>
+      <div class="grid-racconti">
+        {racconti.map(opera => (
+          <a href={`${B}/opera/${opera.id}`} class="card card-racconto">
+            <div class="card-img-wrap">
+              <img src={`${B}${opera.data.cover}`} alt={opera.data.title} class="card-img" loading="lazy" />
+              <div class="card-img-overlay"></div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">{opera.data.title}</h3>
+              <p class="card-subtitle">{opera.data.subtitle}</p>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>

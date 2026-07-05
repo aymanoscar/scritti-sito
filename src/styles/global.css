@@ -32,7 +32,17 @@ html {
 
 body {
   font-family: var(--font-serif);
+  /* Sfondo non piatto: gradiente caldo con macchie oro/ruggine semitrasparenti */
   background-color: var(--color-ink);
+  background-image:
+    /* macchie calde grandi in posizione fissa */
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(139, 115, 65, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 30%, rgba(160, 72, 34, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 50% 70%, rgba(92, 31, 31, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(139, 115, 65, 0.05) 0%, transparent 55%),
+    /* vignettatura laterale calda */
+    radial-gradient(ellipse at center, transparent 0%, rgba(10, 9, 8, 0.5) 100%);
+  background-attachment: fixed;
   color: var(--color-paper);
   margin: 0;
   font-size: 1.125rem;
@@ -48,10 +58,31 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.04;
+  opacity: 0.05;
   background-image:
     repeating-linear-gradient(45deg, transparent 0, transparent 1px, rgba(255,255,255,0.1) 1px, rgba(255,255,255,0.1) 2px),
     repeating-linear-gradient(-45deg, transparent 0, transparent 1px, rgba(255,255,255,0.05) 1px, rgba(255,255,255,0.05) 2px);
+}
+
+/* Sezioni alternate: pannelli semitrasparenti caldi e freddi */
+.section-warm,
+.section-cool {
+  position: relative;
+  z-index: 2;
+}
+.section-warm {
+  /* pannello leggermente piu chiaro, tono oro/ruggine */
+  background:
+    linear-gradient(180deg, rgba(40, 30, 20, 0.45) 0%, rgba(26, 22, 20, 0.55) 100%);
+  border-top: 1px solid rgba(201, 169, 97, 0.08);
+  border-bottom: 1px solid rgba(201, 169, 97, 0.08);
+}
+.section-cool {
+  /* pannello piu scuro, contrasto */
+  background:
+    linear-gradient(180deg, rgba(15, 12, 10, 0.5) 0%, rgba(10, 9, 8, 0.6) 100%);
+  border-top: 1px solid rgba(92, 31, 31, 0.08);
+  border-bottom: 1px solid rgba(92, 31, 31, 0.08);
 }
 
 /* Headings */
