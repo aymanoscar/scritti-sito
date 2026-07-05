@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 const tutte = await getCollection('opera');
 const libro = tutte.filter(o => o.data.collection === 'libro').sort((a,b) => a.data.order - b.data.order);
 const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) => a.data.order - b.data.order);
@@ -11,7 +12,7 @@ const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg">
-      <img src="/images/covers/home.png" alt="" class="hero-img" />
+      <img src={`${B}/images/covers/home.png`} alt="" class="hero-img" />
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content container-editorial">
@@ -30,8 +31,8 @@ const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) 
         <span class="muted">in dialogo con PI e AOrchestra</span>
       </p>
       <div class="hero-cta fade-in" style="animation-delay: 0.6s">
-        <a href="/libro" class="btn-primary">Il Libro</a>
-        <a href="/racconti" class="btn-ghost">Racconti</a>
+        <a href={`${B}/libro`} class="btn-primary">Il Libro</a>
+        <a href={`${B}/racconti`} class="btn-ghost">Racconti</a>
       </div>
     </div>
     <div class="scroll-hint">
@@ -57,9 +58,9 @@ const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) 
     </div>
     <div class="grid-feature">
       {libro.slice(0, 4).map((opera, i) => (
-        <a href={`/opera/${opera.id}`} class:list={["card", "card-feature", { "card-wide": i === 0 }]}>
+        <a href={`${B}/opera/${opera.id}`} class:list={["card", "card-feature", { "card-wide": i === 0 }]}>
           <div class="card-img-wrap">
-            <img src={opera.data.cover} alt={opera.data.title} class="card-img" loading="lazy" />
+            <img src={`${B}${opera.data.cover}`} alt={opera.data.title} class="card-img" loading="lazy" />
             <div class="card-img-overlay"></div>
           </div>
           <div class="card-body">
@@ -71,7 +72,7 @@ const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) 
       ))}
     </div>
     <div class="section-more">
-      <a href="/libro">Tutti i capitoli e ricerche →</a>
+      <a href={`${B}/libro`}>Tutti i capitoli e ricerche →</a>
     </div>
   </section>
 
@@ -84,9 +85,9 @@ const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) 
     </div>
     <div class="grid-racconti">
       {racconti.map(opera => (
-        <a href={`/opera/${opera.id}`} class="card card-racconto">
+        <a href={`${B}/opera/${opera.id}`} class="card card-racconto">
           <div class="card-img-wrap">
-            <img src={opera.data.cover} alt={opera.data.title} class="card-img" loading="lazy" />
+            <img src={`${B}${opera.data.cover}`} alt={opera.data.title} class="card-img" loading="lazy" />
             <div class="card-img-overlay"></div>
           </div>
           <div class="card-body">

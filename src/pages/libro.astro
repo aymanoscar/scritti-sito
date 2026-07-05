@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 const libro = (await getCollection('opera'))
   .filter(o => o.data.collection === 'libro')
   .sort((a,b) => a.data.order - b.data.order);
@@ -21,10 +22,10 @@ const libro = (await getCollection('opera'))
 
   <section class="opere-list container-editorial">
     {libro.map(opera => (
-      <a href={`/opera/${opera.id}`} class="opera-row">
+      <a href={`${B}/opera/${opera.id}`} class="opera-row">
         <div class="row-num">{String(opera.data.order).padStart(2, '0')}</div>
         <div class="row-img">
-          <img src={opera.data.cover} alt={opera.data.title} loading="lazy" />
+          <img src={`${B}${opera.data.cover}`} alt={opera.data.title} loading="lazy" />
         </div>
         <div class="row-body">
           <h2>{opera.data.title}</h2>

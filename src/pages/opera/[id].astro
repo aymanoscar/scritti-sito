@@ -10,6 +10,7 @@ export async function getStaticPaths() {
   }));
 }
 
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 const { opera } = Astro.props;
 const { Content } = await render(opera);
 const altre = (await getCollection('opera'))
@@ -23,11 +24,11 @@ const next = altre.find(o => o.data.order > opera.data.order) || altre[0];
     <!-- HERO OPERA -->
     <header class="opera-hero">
       <div class="opera-hero-bg">
-        <img src={opera.data.cover} alt="" />
+        <img src={`${B}${opera.data.cover}`} alt="" />
         <div class="opera-hero-overlay"></div>
       </div>
       <div class="opera-hero-content container-editorial">
-        <a href={`/${opera.data.collection}`} class="back-link">← {opera.data.collection === 'libro' ? 'Libro' : 'Racconti'}</a>
+        <a href={`${B}/${opera.data.collection}`} class="back-link">← {opera.data.collection === 'libro' ? 'Libro' : 'Racconti'}</a>
         <span class="opera-eyebrow">{opera.data.subtitle}</span>
         <h1 class="opera-title">{opera.data.title}</h1>
         <div class="opera-meta">
@@ -47,7 +48,7 @@ const next = altre.find(o => o.data.order > opera.data.order) || altre[0];
     <!-- NEXT -->
     {next && (
       <aside class="next-opera">
-        <a href={`/opera/${next.id}`} class="next-link">
+        <a href={`${B}/opera/${next.id}`} class="next-link">
           <span class="next-label">Prossima opera</span>
           <span class="next-title">{next.data.title}</span>
           <span class="next-arrow">→</span>

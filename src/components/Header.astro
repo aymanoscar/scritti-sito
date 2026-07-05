@@ -1,16 +1,17 @@
 ---
+const B = import.meta.env.BASE_URL.replace(/\/$/, ''); // "/scritti-sito" senza slash finale
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/libro', label: 'Libro' },
-  { href: '/racconti', label: 'Racconti' },
-  { href: '/about', label: 'About' },
+  { href: `${B}/`, label: 'Home' },
+  { href: `${B}/libro`, label: 'Libro' },
+  { href: `${B}/racconti`, label: 'Racconti' },
+  { href: `${B}/about`, label: 'About' },
 ];
 const { pathname } = Astro.url;
 ---
 
 <header class="site-header">
   <div class="container-editorial header-inner">
-    <a href="/" class="logo">
+    <a href={`${B}/`} class="logo">
       <span class="logo-mark">❦</span>
       <span class="logo-text">Ayman Soliman</span>
     </a>
@@ -18,7 +19,7 @@ const { pathname } = Astro.url;
       {navItems.map(item => (
         <a
           href={item.href}
-          class:list={["nav-link", { active: pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) }]}
+          class:list={["nav-link", { active: pathname === item.href || (item.href !== `${B}/` && pathname.startsWith(item.href)) }]}
         >
           {item.label}
         </a>
