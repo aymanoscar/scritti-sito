@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const opere = await getCollection('opera');
+  return opere.map(opera => ({
+    params: { id: opera.id },
+    props: { opera },
+  }));
+}
+
+const { opera } = Astro.props;
+const { Content } = await render(opera);
+const altre = (await getCollection('opera'))
+  .filter(o => o.data.collection === opera.data.collection && o.id !== opera.id)
+  .sort((a,b) => a.data.order - b.data.order);
+const next = altre.find(o => o.data.order > opera.data.order) || altre[0];
+---
+
+<BaseLayout title={`${opera.data.title} — Ayman Soliman`} description={opera.data.subtitle}>
+  <article class="opera">
+    <!-- HERO OPERA -->
+    <header class="opera-hero">
+      <div class="opera-hero-bg">
+        <img src={opera.data.cover} alt="" />
+        <div class="opera-hero-overlay"></div>
+      </div>
+      <div class="opera-hero-content container-editorial">
+        <a href={`/${opera.data.collection}`} class="back-link">← {opera.data.collection === 'libro' ? 'Libro' : 'Racconti'}</a>
+        <span class="opera-eyebrow">{opera.data.subtitle}</span>
+        <h1 class="opera-title">{opera.data.title}</h1>
+        <div class="opera-meta">
+          <span>di {opera.data.author}</span>
+          {opera.data.tags.map(t => <span class="tag">· {t}</span>)}
+        </div>
+      </div>
+    </header>
+
+    <!-- CORPO -->
+    <div class="opera-body">
+      <div class="prose container-editorial">
+        <Content />
+      </div>
+    </div>
+
+    <!-- NEXT -->
+    {next && (
+      <aside class="next-opera">
+        <a href={`/opera/${next.id}`} class="next-link">
+          <span class="next-label">Prossima opera</span>
+          <span class="next-title">{next.data.title}</span>
+          <span class="next-arrow">→</span>
+        </a>
+      </aside>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+.opera-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 6rem 0 3rem;
+  overflow: hidden;
+}
+.opera-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.opera-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4) saturate(1.1);
+}
+.opera-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,9,8,0.5) 0%, transparent 30%, transparent 60%, rgba(10,9,8,0.95) 100%);
+}
+.opera-hero-content {
+  position: relative;
+  z-index: 2;
+}
+.back-link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-gold);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+.back-link:hover { opacity: 1; }
+.opera-eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-gold);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.opera-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+  color: var(--color-paper);
+  letter-spacing: -0.01em;
+}
+.opera-meta {
+  font-family: var(--font-display);
+  color: var(--color-paper-muted);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+.opera-meta .tag { color: var(--color-gold); }
+
+.opera-body {
+  padding: 4rem 0;
+  background: var(--color-ink);
+  position: relative;
+  z-index: 3;
+}
+
+.next-opera {
+  border-top: 1px solid rgba(201,169,97,0.15);
+  padding: 3rem 0;
+  background: var(--color-ink-soft);
+}
+.next-link {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.next-link:hover { opacity: 0.85; }
+.next-label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+.next-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--color-paper);
+}
+.next-arrow {
+  font-size: 2rem;
+  color: var(--color-gold);
+}
+@media (max-width: 640px) {
+  .next-link { grid-template-columns: 1fr auto; }
+  .next-label { grid-column: span 2; }
+}
+</style>

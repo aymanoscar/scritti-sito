@@ -1,0 +1,389 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const tutte = await getCollection('opera');
+const libro = tutte.filter(o => o.data.collection === 'libro').sort((a,b) => a.data.order - b.data.order);
+const racconti = tutte.filter(o => o.data.collection === 'racconti').sort((a,b) => a.data.order - b.data.order);
+---
+
+<BaseLayout>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/images/covers/home.png" alt="" class="hero-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content container-editorial">
+      <p class="hero-eyebrow fade-in">Una biblioteca ibrida umano-AI</p>
+      <h1 class="hero-title fade-in" style="animation-delay: 0.1s">
+        <span class="title-line">Ayman</span>
+        <span class="title-line italic">Soliman</span>
+      </h1>
+      <div class="hero-divider fade-in" style="animation-delay: 0.3s">
+        <span class="line"></span>
+        <span class="ornament">❦</span>
+        <span class="line"></span>
+      </div>
+      <p class="hero-tagline fade-in" style="animation-delay: 0.4s">
+        Scritti, racconti e ricerche<br/>
+        <span class="muted">in dialogo con PI e AOrchestra</span>
+      </p>
+      <div class="hero-cta fade-in" style="animation-delay: 0.6s">
+        <a href="/libro" class="btn-primary">Il Libro</a>
+        <a href="/racconti" class="btn-ghost">Racconti</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <span class="scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro container-editorial">
+    <p class="intro-text">
+      <em>La scrittura è l'architettura della memoria, non la sua fotografia.</em>
+      Questo spazio raccoglie il lavoro narrativo e saggistico di Ayman Soliman in collaborazione con i suoi agenti intelligenti. Un esperimento di letteratura ibrida dove la visione umano detta la voce e l'intelligenza artificiale tesse ricerche e varianti.
+    </p>
+  </section>
+
+  <!-- LIBRO FEATURE -->
+  <section class="section-feature container-editorial" id="libro">
+    <div class="section-head">
+      <span class="section-label">Progetto lungo</span>
+      <h2>Libro — Tecnofascismo</h2>
+      <p class="section-desc">Un'indagine narrativa sul tecnofascismo contemporaneo, scritta in dialogo tra Ayman e PI.</p>
+    </div>
+    <div class="grid-feature">
+      {libro.slice(0, 4).map((opera, i) => (
+        <a href={`/opera/${opera.id}`} class:list={["card", "card-feature", { "card-wide": i === 0 }]}>
+          <div class="card-img-wrap">
+            <img src={opera.data.cover} alt={opera.data.title} class="card-img" loading="lazy" />
+            <div class="card-img-overlay"></div>
+          </div>
+          <div class="card-body">
+            <span class="card-num">{String(opera.data.order).padStart(2, '0')}</span>
+            <h3 class="card-title">{opera.data.title}</h3>
+            <p class="card-subtitle">{opera.data.subtitle}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="section-more">
+      <a href="/libro">Tutti i capitoli e ricerche →</a>
+    </div>
+  </section>
+
+  <!-- RACCONTI FEATURE -->
+  <section class="section-feature container-editorial" id="racconti">
+    <div class="section-head">
+      <span class="section-label">Raccolte</span>
+      <h2>Racconti</h2>
+      <p class="section-desc">Cinque raccolte di racconti scritti da AOrchestra in collaborazione con Ayman. Stili che spaziano dal cronachistico all'avanguardia.</p>
+    </div>
+    <div class="grid-racconti">
+      {racconti.map(opera => (
+        <a href={`/opera/${opera.id}`} class="card card-racconto">
+          <div class="card-img-wrap">
+            <img src={opera.data.cover} alt={opera.data.title} class="card-img" loading="lazy" />
+            <div class="card-img-overlay"></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{opera.data.title}</h3>
+            <p class="card-subtitle">{opera.data.subtitle}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45) saturate(1.1);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 0%, rgba(10,9,8,0.7) 100%),
+    linear-gradient(180deg, rgba(10,9,8,0.4) 0%, transparent 30%, transparent 70%, rgba(10,9,8,0.9) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
+.hero-eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--color-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-weight: 500;
+}
+.title-line { display: block; color: var(--color-paper); }
+.title-line.italic { font-style: italic; color: var(--color-gold-bright); }
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem auto;
+  max-width: 300px;
+}
+.hero-divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+.hero-divider .ornament {
+  color: var(--color-gold);
+  font-size: 1.2rem;
+}
+.hero-tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--color-paper-soft);
+  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+}
+.hero-tagline .muted { color: var(--color-paper-muted); font-style: italic; }
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary, .btn-ghost {
+  padding: 0.9rem 2.2rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-gold);
+}
+.btn-primary {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+.btn-primary:hover {
+  background: var(--color-gold-bright);
+  color: var(--color-ink);
+  box-shadow: 0 8px 30px rgba(201,169,97,0.3);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-gold-bright);
+}
+.btn-ghost:hover {
+  background: rgba(201,169,97,0.1);
+  transform: translateY(-2px);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-paper-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--color-gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* INTRO */
+.intro {
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+.intro-text {
+  max-width: 56ch;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--color-paper-soft);
+  font-style: italic;
+}
+.intro-text em { color: var(--color-gold-bright); }
+
+/* SECTION FEATURE */
+.section-feature {
+  padding: 5rem 1.5rem;
+}
+.section-head {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.section-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.8rem;
+}
+.section-head h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin: 0 0 0.8rem;
+  color: var(--color-paper);
+}
+.section-desc {
+  max-width: 56ch;
+  margin: 0 auto;
+  color: var(--color-paper-muted);
+  font-size: 1.05rem;
+}
+.section-more {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.section-more a {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-bright);
+}
+
+/* GRID */
+.grid-feature {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.grid-feature .card-wide {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.grid-racconti {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.2rem;
+}
+@media (max-width: 900px) {
+  .grid-feature { grid-template-columns: repeat(2, 1fr); }
+  .grid-feature .card-wide { grid-column: span 2; grid-row: span 1; }
+  .grid-racconti { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .grid-feature, .grid-racconti { grid-template-columns: 1fr; }
+  .grid-feature .card-wide { grid-column: span 1; }
+}
+
+/* CARD */
+.card {
+  display: block;
+  background: var(--color-ink-card);
+  border: 1px solid rgba(201,169,97,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  text-decoration: none;
+  height: 100%;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201,169,97,0.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201,169,97,0.08);
+}
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+.card-wide .card-img-wrap { aspect-ratio: 16 / 11; }
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.4s ease;
+  filter: brightness(0.85) saturate(1.05);
+}
+.card:hover .card-img {
+  transform: scale(1.05);
+  filter: brightness(1) saturate(1.15);
+}
+.card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.85) 100%);
+  pointer-events: none;
+}
+.card-body {
+  padding: 1.4rem 1.4rem 1.6rem;
+}
+.card-num {
+  font-family: var(--font-display);
+  color: var(--color-gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-paper);
+  margin: 0 0 0.3rem;
+  line-height: 1.2;
+}
+.card-wide .card-title { font-size: 2rem; }
+.card-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-paper-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+.card-racconto .card-body { padding: 1rem 1rem 1.2rem; }
+.card-racconto .card-title { font-size: 1.15rem; }
+.card-racconto .card-subtitle { font-size: 0.85rem; }
+</style>

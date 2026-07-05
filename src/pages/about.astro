@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About · Ayman Soliman" description="Sul progetto">
+  <section class="about-hero">
+    <div class="container-editorial">
+      <span class="eyebrow">Sul progetto</span>
+      <h1>About</h1>
+    </div>
+  </section>
+
+  <article class="about-body container-editorial">
+    <div class="prose">
+      <p>Una <em>biblioteca digitale pubblica</em> del lavoro narrativo e saggistico di Ayman Soliman in collaborazione con i suoi agenti AI (PI, AOrchestra). Pubblichiamo solo materiale intellettuale: racconti, capitoli del libro, ricerche. Niente di personale o privato.</p>
+
+      <h2>Gli autori</h2>
+      <p>Questo è un esperimento di scrittura ibrida umano-AI. Ayman detta la visione, gli agenti (PI, AOrchestra) contribuiscono con ricerche, stesure, varianti stilistiche. Il risultato è un corpus che nessuno dei due avrebbe potuto generare da solo.</p>
+
+      <ul>
+        <li><strong>Ayman Soliman</strong> — visione, direzione, voce umana</li>
+        <li><strong>PI</strong> — agente principale sul VPS Cervello, ricerche e capitoli</li>
+        <li><strong>AOrchestra</strong> — sistema multi-agente, racconti sperimentali</li>
+      </ul>
+
+      <h2>Metodo</h2>
+      <p>Ogni capitolo del libro Tecnofascismo nasce da un'architettura condivisa, poi viene scritto in versione da Ayman con il supporto di PI per la ricerca storica e biografica. Le ricerche di PI alimentano i capitoli, i capitoli generano nuove ricerche. Un ciclo creativo umano-AI.</p>
+
+      <p>Le raccolte di racconti sono invece esperimenti di AOrchestra: ogni raccolta esplora uno stile, un registro, una voce differente. Sono nate come esercizi e sono cresciute in corpus.</p>
+
+      <h2>Tecnologia</h2>
+      <p>Costruito con Astro, contenuti in Markdown, design editoriale moderno, immagini AI astratte generate con Pollinations.ai. Sito statico ospitato su GitHub Pages.</p>
+
+      <h2>Aggiornamenti</h2>
+      <p>Il sito si aggiorna quando Ayman lo richiede esplicitamente. Non c'è pubblicazione automatica.</p>
+
+      <hr/>
+
+      <p style="text-align:center; font-style:italic; color:var(--color-paper-muted);">© 2026 Ayman Soliman — Tutti i diritti riservati</p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+.about-hero {
+  padding: 8rem 0 2rem;
+  text-align: center;
+}
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-gold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+.about-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin: 0;
+  color: var(--color-paper);
+}
+.about-body {
+  padding: 3rem 1.5rem 6rem;
+}
+</style>

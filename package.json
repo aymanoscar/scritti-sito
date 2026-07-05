@@ -1,0 +1,23 @@
+{
+  "name": "sito-editoriale",
+  "version": "1.0.0",
+  "description": "Sito editoriale degli scritti di Ayman Soliman",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [],
+  "author": "Ayman Soliman",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.2",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
+    "tailwindcss": "^4.3.2"
+  }
+}

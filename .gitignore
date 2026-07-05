@@ -1,0 +1,20 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# generated content cache
+.astro/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# env
+.env
+.env.local
+
+# logs
+*.log
+npm-debug.log*

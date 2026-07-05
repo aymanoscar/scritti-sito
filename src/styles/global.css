@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette editoriale moderna — dark caldo con accenti */
+  --color-ink: #0a0908;
+  --color-ink-soft: #14110f;
+  --color-ink-card: #1a1614;
+  --color-paper: #f5efe0;
+  --color-paper-soft: #e8dcc4;
+  --color-paper-muted: #8a7e6a;
+  --color-gold: #c9a961;
+  --color-gold-bright: #e6c47a;
+  --color-gold-deep: #8b7341;
+  --color-rust: #a04822;
+  --color-burgundy: #5c1f1f;
+
+  /* Tipografia */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-serif: "EB Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-serif);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Texture grain overlay globale */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0, transparent 1px, rgba(255,255,255,0.1) 1px, rgba(255,255,255,0.1) 2px),
+    repeating-linear-gradient(-45deg, transparent 0, transparent 1px, rgba(255,255,255,0.05) 1px, rgba(255,255,255,0.05) 2px);
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-paper);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; }
+h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.2; }
+h3 { font-size: clamp(1.4rem, 2vw, 1.8rem); }
+
+/* Links */
+a {
+  color: var(--color-gold-bright);
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+a:hover {
+  color: var(--color-gold-bright);
+  text-shadow: 0 0 12px rgba(230, 196, 122, 0.4);
+}
+
+/* Prose — tipografia narrativa per le pagine opera */
+.prose {
+  max-width: 68ch;
+  margin: 0 auto;
+}
+.prose p {
+  margin: 0 0 1.4em 0;
+  text-align: justify;
+  hyphens: auto;
+  font-size: 1.2rem;
+  line-height: 1.85;
+}
+.prose p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 4.5em;
+  float: left;
+  line-height: 0.82;
+  padding-right: 0.1em;
+  padding-top: 0.04em;
+  color: var(--color-gold);
+  font-weight: 500;
+}
+.prose h2 {
+  margin-top: 2.5em;
+  margin-bottom: 0.8em;
+  color: var(--color-gold);
+  border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  padding-bottom: 0.3em;
+}
+.prose h3 {
+  color: var(--color-paper-soft);
+  margin-top: 2em;
+}
+.prose blockquote {
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--color-paper-soft);
+  border-left: 3px solid var(--color-gold);
+  padding: 0.5em 1.5em;
+  margin: 1.8em 0;
+  background: rgba(201, 169, 97, 0.04);
+}
+.prose hr {
+  border: none;
+  text-align: center;
+  margin: 3em 0;
+}
+.prose hr::before {
+  content: "❦  ✦  ❦";
+  color: var(--color-gold);
+  letter-spacing: 0.5em;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+.prose img {
+  width: 100%;
+  border-radius: 2px;
+  margin: 2em 0;
+}
+.prose strong { color: var(--color-gold-bright); }
+.prose em { color: var(--color-paper-soft); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 169, 97, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(201, 169, 97, 0.5); }
+
+::selection {
+  background: rgba(201, 169, 97, 0.3);
+  color: var(--color-paper);
+}
+
+/* Animazioni */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Container editoriale */
+.container-editorial {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}

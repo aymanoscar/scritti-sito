@@ -1,0 +1,70 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container-editorial footer-inner">
+    <div class="footer-brand">
+      <span class="footer-mark">❦  ✦  ❦</span>
+      <p class="footer-title">Ayman Soliman — Scritti</p>
+      <p class="footer-tagline">Una biblioteca ibrida umano-AI</p>
+    </div>
+    <div class="footer-meta">
+      <p>© {year} Ayman Soliman</p>
+      <p>Tutti i diritti riservati</p>
+      <p class="footer-built">Costruito con Astro · GitHub Pages</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  margin-top: 6rem;
+  padding: 3rem 0 2rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 17, 15, 0.6) 50%, var(--color-ink-soft) 100%);
+  border-top: 1px solid rgba(201, 169, 97, 0.12);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-brand { text-align: left; }
+.footer-mark {
+  color: var(--color-gold);
+  letter-spacing: 0.6em;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+.footer-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-paper);
+  margin: 0.6rem 0 0.2rem;
+  letter-spacing: 0.02em;
+}
+.footer-tagline {
+  font-style: italic;
+  color: var(--color-paper-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+.footer-meta {
+  text-align: right;
+  color: var(--color-paper-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.footer-meta p { margin: 0; }
+.footer-built {
+  opacity: 0.6;
+  font-size: 0.75rem;
+  margin-top: 0.4rem !important;
+}
+@media (max-width: 640px) {
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .footer-meta { text-align: left; }
+}
+</style>
